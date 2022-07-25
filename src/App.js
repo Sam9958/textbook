@@ -1,8 +1,13 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Form from './components/Form';
-// import About from './components/About'
+import About from './components/About'
 import { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   const[Mode,setMode] =useState("light")
@@ -20,7 +25,7 @@ function App() {
     }
   }
   const togglemode2 =()=>{
-    if(Mode!="primary"){
+    if(Mode!=="primary"){
       setMode("primary");
       document.body.style.backgroundColor = "blue";
       document.body.style.color = "white";
@@ -32,13 +37,18 @@ function App() {
   }
   return (
     <>
+    <Router>
     <Navbar title="Textbook" mode={Mode} togglemode={togglemode} togglemode2={togglemode2}/>
     <div className="container">
-    <Form heading="Enter Your content Here" mode={Mode}/>
+    <Routes>
+          <Route exact path="/" element={<Form heading="Enter Your content Here" mode={Mode}/>}/>
+          <Route exact path="/about" element={<About/>}/>
+          {/* <Route exact path="/recovery-password" element={<RecoveryPassword/>}/>
+          <Route path="*" element={<NotFound/>}/> */}
+        </Routes>
     </div>
-    {/* <div className="con my-3">
-    <About />
-    </div> */}
+    </Router>
+    
     </>
   );
 }

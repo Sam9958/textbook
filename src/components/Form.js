@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 
 
 export default function Form(props) {
-    const [color,Setcolor] = useState({
-      backgroundColor:"white",
-      color:"black"
-    })
+    // const [color,Setcolor] = useState({
+    //   backgroundColor:"white",
+    //   color:"black"
+    // })
     const [Text,setText] = useState("");
     const onchangehandling=(event)=>{
         // console.log("onchange");
