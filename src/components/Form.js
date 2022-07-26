@@ -13,6 +13,7 @@ export default function Form(props) {
     }
     const changeToUpperCase=()=>{
             // console.log("clicked");
+            
             let newText=Text.toUpperCase();
             setText(newText);
     }
@@ -21,7 +22,7 @@ export default function Form(props) {
       setText(newText);
     }
     const Capitalise=()=>{
-      let words = Text.split(" ");
+      let words = Text.split("/s+/");
       let neww = '';
       words.forEach(element=>{
         neww = neww + element.charAt(0).toUpperCase()+element.slice(1)+" ";
@@ -30,7 +31,7 @@ export default function Form(props) {
     }
    
     const FilterEmail = ()=>{
-      let arr = Text.split(" ");
+      let arr = Text.split(/\s+/);
       let varia = " ";
       arr.forEach(element => {
         if(element.includes("@gmail.com")){
@@ -48,14 +49,14 @@ export default function Form(props) {
     <label htmlFor="exampleFormControlTextarea1">{props.heading}</label>
     <textarea className="form-control my-3" value={Text} style={{backgroundColor:props.mode==="dark"?"grey":"white",color:props.mode==="dark"?"white":"black"}} onChange={onchangehandling} id="exampleFormControlTextarea1" rows="8"></textarea>
   </div>
-  <button className="btn btn-primary" onClick={changeToUpperCase}>Change to UpperCase</button>
-  <button className="btn btn-primary mx-2" onClick={changeToLowerCase}>Change to Lowercase</button>
-  <button className="btn btn-primary mx-2" onClick={FilterEmail}>Filter Email</button>
-  <button className="btn btn-primary" onClick={Capitalise}>Capitalise</button>
+  <button disabled={Text.length===0} className="btn btn-primary my-2 mx-2" onClick={changeToUpperCase}>Change to UpperCase</button>
+  <button className="btn btn-primary my-2 mx-2" onClick={changeToLowerCase}>Change to Lowercase</button>
+  <button className="btn btn-primary my-2 mx-2" onClick={FilterEmail}>Filter Email</button>
+  <button className="btn btn-primary my-2 mx-2" onClick={Capitalise}>Capitalise</button>
   </div>
   <div className="summary">
     <h2>Text Summary </h2>
-    <p>The Length of Text is {Text.length} And The Numbers of Words it contains is {Text.split(" ").length-1}</p>
+    <p>The Length of Text is {Text.length} And The Numbers of Words it contains is {Text.split(/\s+/).filter((element)=>{return element.length!==0}).length}</p>
     
   </div>
   </>
